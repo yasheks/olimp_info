@@ -1,0 +1,15 @@
+A=int(input())
+B=int(input())
+C=int(input())
+D=int(input())
+a=[A,B,C]
+gg=max(a)
+ggg=sum(a)-gg
+h=ggg-gg
+if h<0:
+    h=-h
+
+t=h-D
+if t<0:
+    t=0
+print(t)
