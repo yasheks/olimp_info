@@ -1,15 +1,25 @@
-A=int(input())
-B=int(input())
-C=int(input())
-D=int(input())
-a=[A,B,C]
-gg=max(a)
-ggg=sum(a)-gg
-h=ggg-gg
-if h<0:
-    h=-h
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
-t=h-D
-if t<0:
-    t=0
-print(t)
+int main() {
+    int A, B, C, D;
+    cin >> A >> B >> C >> D;
+
+    int a[] = {A, B, C};
+    int gg = *max_element(a, a + 3);
+    int ggg = A + B + C - gg;
+    int h = ggg - gg;
+
+    if (h < 0) {
+        h = -h;
+    }
+
+    int t = h - D;
+    if (t < 0) {
+        t = 0;
+    }
+
+    cout << t << endl;
+    return 0;
+}
