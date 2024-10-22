@@ -1,25 +1,21 @@
-n=int(input())
-m=int(input())
-k=int(input())
-
-def f(n,m,k):
-f=1
-while f:
-if (k-1)<=min(n,m):
-return min(n,m)*(max(m,n)-1)
-if (k-1)<=max(n,m):
-return max(n,m)*(min(m,n)-1)
-if (k-1)>max(n,m):
-if n==max(n,m):
-m=m-1
-else:
-n=n-1
-k=k-max(n,m)
-elif (k-1)>min(n,m):
-if n==min(n,m):
-m=m-1
-else:
-n=n-1
-k=k-min(n,m)
-
-print(f(n,m,k))
+n = int(input())
+m = int(input())
+k = int(input())
+n, m = (reversed(sorted([n, m])))
+i = 1
+j = max([j for j in range(1, m + 1) if i * j + k <= n * m + 1])
+ans = i * j
+flag = True
+while i + j:
+    if flag:
+        i += 1
+        flag = False
+    else:
+        j -= 1
+    if i > n or j <= 0:
+        break
+    if i * j + k <= n * m + 1:
+        flag = True
+        if ans + k < i * j + k:
+            ans = i * j
+print(ans)
