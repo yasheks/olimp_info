@@ -1,1 +1,32 @@
+def is_valid_code(code, reports):
+    for mask, sum_value in reports:
+        f = sum(code[i] for i in range(len(mask)) if mask[i] == '1')
+        if f != sum_value:
+            return False
+    return True
 
+def generate_codes(n, b, code='', current_length=0):
+    if current_length == n:
+        yield tuple(int(digit) for digit in code)
+        return
+
+    for digit in range(b):
+        yield from generate_codes(n, b, code + str(digit), current_length + 1)
+
+b = int(input()) 
+n = int(input()) 
+t = int(input())
+
+reports = []
+for _ in range(t):
+    mask = input()
+    sum_value = int(input())
+    reports.append((mask, sum_value))
+
+valid_codes_count = 0
+
+for code in generate_codes(n, b):
+    if is_valid_code(code, reports):
+        valid_codes_count += 1
+
+print(valid_codes_count)
